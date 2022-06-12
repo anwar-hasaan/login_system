@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .forms import CreateUserForm
+from django.contrib import messages
 
 @login_required
 def home(request):
     return render(request, 'login_pages/home.html')
 
 def join_us(request):
+    if request.user.is_authenticated:
+        messages.success(request, "You're already logged-in!")
+        return redirect('/')
     signup_form = CreateUserForm()
     if request.method == 'POST':
         signup_form = CreateUserForm(request.POST)
@@ -22,7 +25,7 @@ def join_us(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        messages.success(request, 'You are already logged-in')
+        messages.success(request, 'You are already logged-in!')
         return redirect('/')
     if request.method == 'POST':
         username = request.POST.get('username')
