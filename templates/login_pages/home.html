@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock title %}
+{% block content %}
+<div id="msg-box-main">
+    {% if signup_form.errors %}<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{signup_form.errors}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>{% endif %}
+    {% if messages %}<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{% for message in messages %}{{message}}{% endfor %}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>{% endif %}
+</div>
+
+<h2>Hello {{request.user.username}}</h2>
+<a href="/logout-user">Logout</a>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_css %}<link rel="stylesheet" href="{% static 'assets/reset_pass.css' %}">{% endblock custom_css %}
+{% block title %}Password reset email sent{% endblock title %}
+
+{% block content %}
+<a href="/join-us/">login page</a>
+    <section class="main-container">
+        <div class="reset-form">
+            <div class="msg-box">
+                <h2 class="title">Password reset email sent.</h2>
+                <p class="label-text">Check your mail and click the link on it to reset your password.</p>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
